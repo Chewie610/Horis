@@ -56,3 +56,8 @@ jobs:
           git add .
           git commit --amend -m "Build $GITHUB_SHA" || exit 0   # do not error if nothing to commit
           git push --force
+      - name: Debug Fetch
+        run: |
+          echo "Current directory: $PWD"
+          ls -la
+          git fetch --verbose --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/builds*:refs/remotes/origin/builds* +refs/tags/builds*:refs/tags/builds*
